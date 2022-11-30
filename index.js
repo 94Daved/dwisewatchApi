@@ -5,10 +5,10 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 
 //routes
-import userRoutes from "../api/routes/users.js";
-import videoRoutes from "../api/routes/videos.js";
-import commentRoutes from "../api/routes/comments.js";
-import authRoutes from "../api/routes/auth.js";
+import userRoutes from "./routes/users.js";
+import videoRoutes from "./routes/videos.js";
+import commentRoutes from "./routes/comments.js";
+import authRoutes from "./routes/auth.js";
 
 // import path from "path";
 // import { fileURLToPath } from "url";
@@ -21,7 +21,7 @@ const app = express();
 
 const connect = () => {
   mongoose
-    .connect(process.env.MONGO_URL)
+    .connect(process.env.DATABASE_URL)
     .then(() => {
       console.log("connected to MongoDB");
     })
@@ -49,7 +49,7 @@ app.use((err, req, res, next) => {
 //   res.sendFile(path.join(__dirname, "/app/build", "index.html"));
 // });
 
-const port = process.env.PORT || 8800;
+const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
   console.log(`listening to port ${port}...`);
